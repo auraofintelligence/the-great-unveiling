@@ -13,58 +13,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* --- Core Styling & Dark Theme --- */
-        body {
-            background-color: #0a0b0f;
-            color: #e0e1e6;
-            font-family: 'Inter', sans-serif;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* --- Glassmorphism Navigation --- */
-        nav {
-            background: rgba(10, 11, 15, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(42, 45, 57, 0.5);
-        }
-
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #00f6ff;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #00f6ff;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* --- Neon Glow Effects --- */
-        .neon-glow-cyan-text {
-            text-shadow:
-                0 0 5px rgba(0, 246, 255, 0.8),
-                0 0 10px rgba(0, 246, 255, 0.6),
-                0 0 20px rgba(0, 246, 255, 0.4);
-        }
-    </style>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body class="antialiased">
+
+    <!-- Animated Background -->
+    <div id="particle-canvas"></div>
 
     <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50">
@@ -84,19 +39,30 @@
     </header>
 
     <!-- Main Content -->
-    <main class="relative mt-32 container mx-auto px-6 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter">THE JOURNEY</h1>
-        <p class="mt-2 text-xl md:text-2xl text-gray-400">The Itinerary</p>
+    <main class="relative mt-32 container mx-auto px-6 py-12 content-container">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter neon-glow-cyan-text">THE JOURNEY</h1>
+            <p class="mt-2 text-xl md:text-2xl text-gray-400">The Itinerary</p>
+        </header>
 
-        <div class="mt-12 space-y-12">
-            <section>
-                <h2 class="text-3xl font-bold text-white">6.0 The Journey</h2>
+        <div class="space-y-10">
+            <!-- Card 1: The Journey -->
+            <section class="aura-card">
+                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">6.0 The Journey</h2>
+                <hr class="neon-divider my-6">
                 <p class="mt-4 text-lg text-gray-300 max-w-4xl">
                     "Project Odyssey" is our 11-year global deployment mission. This page features an interactive map and timeline that allows you to follow our progress, learn about our upcoming destinations, and get involved in local initiatives. It is a transparent and engaging way to be a part of our journey as we bring Aura to the world.
                 </p>
             </section>
         </div>
     </main>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <!-- Particle Animation Script -->
+    <script src="js/particle-animation.js"></script>
 
 </body>
 </html>

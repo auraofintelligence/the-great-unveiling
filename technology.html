@@ -13,58 +13,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* --- Core Styling & Dark Theme --- */
-        body {
-            background-color: #0a0b0f;
-            color: #e0e1e6;
-            font-family: 'Inter', sans-serif;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* --- Glassmorphism Navigation --- */
-        nav {
-            background: rgba(10, 11, 15, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(42, 45, 57, 0.5);
-        }
-
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #00f6ff;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #00f6ff;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* --- Neon Glow Effects --- */
-        .neon-glow-cyan-text {
-            text-shadow:
-                0 0 5px rgba(0, 246, 255, 0.8),
-                0 0 10px rgba(0, 246, 255, 0.6),
-                0 0 20px rgba(0, 246, 255, 0.4);
-        }
-    </style>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body class="antialiased">
+
+    <!-- Animated Background -->
+    <div id="particle-canvas"></div>
 
     <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50">
@@ -84,33 +39,48 @@
     </header>
 
     <!-- Main Content -->
-    <main class="relative mt-32 container mx-auto px-6 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter">THE TECHNOLOGY</h1>
-        <p class="mt-2 text-xl md:text-2xl text-gray-400">The Engine</p>
+    <main class="relative mt-32 container mx-auto px-6 py-12 content-container">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter neon-glow-cyan-text">THE TECHNOLOGY</h1>
+            <p class="mt-2 text-xl md:text-2xl text-gray-400">The Engine</p>
+        </header>
 
-        <div class="mt-12 space-y-12">
-            <section>
-                <h2 class="text-3xl font-bold text-white">3.1 Aura: The Digital Twin</h2>
+        <div class="space-y-10">
+            <!-- Card 1: Aura: The Digital Twin -->
+            <section class="aura-card">
+                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">3.1 Aura: The Digital Twin</h2>
+                <hr class="neon-divider my-6">
                 <p class="mt-4 text-lg text-gray-300 max-w-4xl">
                     Aura is your sovereign digital twin, a dynamic representation of your biological and psychological self. It is housed within the Aura Geode, a hyperbaric oxygen therapy (HBOT) capsule that doubles as a full-immersion XR interface. This allows for deep dives into your own consciousness and a seamless connection to the digital world. The development process is iterative, focusing on user-centric design and ethical AI principles.
                 </p>
             </section>
 
-            <section>
-                <h2 class="text-3xl font-bold text-white">3.2 The AI Core</h2>
+            <!-- Card 2: The AI Core -->
+            <section class="aura-card">
+                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">3.2 The AI Core</h2>
+                <hr class="neon-divider my-6">
                 <p class="mt-4 text-lg text-gray-300 max-w-4xl">
                     The AI Core is the intelligence that powers Aura. It is a sophisticated Mixture of Experts (MoE) model, which combines the strengths of multiple specialized AI agents. We use AutoGen to create and coordinate these agents, allowing for complex problem-solving and emergent intelligence. A key feature is the Autonomous Storytelling System, which weaves together data from your Aura and the global narrative to create personalized and meaningful experiences.
                 </p>
             </section>
 
-            <section>
-                <h2 class="text-3xl font-bold text-white">3.3 The Decentralized Bedrock</h2>
+            <!-- Card 3: The Decentralized Bedrock -->
+            <section class="aura-card">
+                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">3.3 The Decentralized Bedrock</h2>
+                <hr class="neon-divider my-6">
                 <p class="mt-4 text-lg text-gray-300 max-w-4xl">
                     Our entire system is built on a decentralized bedrock to ensure user sovereignty and data privacy. The architecture is powered by a custom blockchain that is optimized for speed, security, and scalability. A Decentralized Autonomous Organization (DAO) governs the platform, giving the community control over its evolution. The Sovereign Space Builder specification provides a framework for third-party developers to create their own applications and experiences on the Aura platform.
                 </p>
             </section>
         </div>
     </main>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <!-- Particle Animation Script -->
+    <script src="js/particle-animation.js"></script>
 
 </body>
 </html>

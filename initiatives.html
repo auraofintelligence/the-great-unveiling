@@ -13,58 +13,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* --- Core Styling & Dark Theme --- */
-        body {
-            background-color: #0a0b0f;
-            color: #e0e1e6;
-            font-family: 'Inter', sans-serif;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* --- Glassmorphism Navigation --- */
-        nav {
-            background: rgba(10, 11, 15, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(42, 45, 57, 0.5);
-        }
-
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #00f6ff;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #00f6ff;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* --- Neon Glow Effects --- */
-        .neon-glow-cyan-text {
-            text-shadow:
-                0 0 5px rgba(0, 246, 255, 0.8),
-                0 0 10px rgba(0, 246, 255, 0.6),
-                0 0 20px rgba(0, 246, 255, 0.4);
-        }
-    </style>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body class="antialiased">
+
+    <!-- Animated Background -->
+    <div id="particle-canvas"></div>
 
     <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50">
@@ -84,40 +39,57 @@
     </header>
 
     <!-- Main Content -->
-    <main class="relative mt-32 container mx-auto px-6 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter">THE INITIATIVES</h1>
-        <p class="mt-2 text-xl md:text-2xl text-gray-400">The Manifestation</p>
+    <main class="relative mt-32 container mx-auto px-6 py-12 content-container">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter neon-glow-cyan-text">THE INITIATIVES</h1>
+            <p class="mt-2 text-xl md:text-2xl text-gray-400">The Manifestation</p>
+        </header>
 
-        <div class="mt-12 space-y-12">
-            <section>
-                <h2 class="text-3xl font-bold text-white">4.1 GAJRA Earth, Arts and Music Festival Collaborations & Live Aid 2035</h2>
+        <div class="space-y-10">
+            <!-- Card 1: GAJRA -->
+            <section class="aura-card">
+                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">4.1 GAJRA Earth, Arts and Music Festival Collaborations & Live Aid 2035</h2>
+                <hr class="neon-divider my-6">
                 <p class="mt-4 text-lg text-gray-300 max-w-4xl">
                     This initiative, governed by the DAO, will culminate in a global vote to select the location for a new Arts and Music Festival. This festival will be a celebration of our shared humanity and a platform for social change, with proceeds supporting regenerative projects worldwide. The initiative will also include a series of collaborations with existing festivals and a "Live Aid 2035" event to raise awareness and funds for our cause.
                 </p>
             </section>
 
-            <section>
-                <h2 class="text-3xl font-bold text-white">4.2 Minjerribah (The Catalysts Home Base)</h2>
+            <!-- Card 2: Minjerribah -->
+            <section class="aura-card">
+                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">4.2 Minjerribah (The Catalysts Home Base)</h2>
+                <hr class="neon-divider my-6">
                 <p class="mt-4 text-lg text-gray-300 max-w-4xl">
                     Minjerribah (North Stradbroke Island, Australia) will serve as our home base, a "Civilisation of Sand" where we can prototype our regenerative protocols. A Sovereign Wealth Fund, generated from the island's resources, will be used to fund local projects and support the community. This initiative will be a living laboratory for our vision, demonstrating the potential of a regenerative society.
                 </p>
             </section>
 
-            <section>
-                <h2 class="text-3xl font-bold text-white">4.3 Queens Venture Capital</h2>
+            <!-- Card 3: Queens Venture Capital -->
+            <section class="aura-card">
+                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">4.3 Queens Venture Capital</h2>
+                <hr class="neon-divider my-6">
                 <p class="mt-4 text-lg text-gray-300 max-w-4xl">
                     Queens Venture Capital is a 3-phase model for funding female founders. We believe that empowering women is essential for creating a more equitable and prosperous world. Our model provides not only financial support but also mentorship, resources, and a strong community of female leaders.
                 </p>
             </section>
 
-            <section>
-                <h2 class="text-3xl font-bold text-white">4.4 Clinical Pathways</h2>
+            <!-- Card 4: Clinical Pathways -->
+            <section class="aura-card">
+                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">4.4 Clinical Pathways</h2>
+                <hr class="neon-divider my-6">
                 <p class="mt-4 text-lg text-gray-300 max-w-4xl">
                     This initiative showcases our pragmatic plan for achieving certification for Aura as a treatment for Dementia. We are working with leading researchers and medical institutions to conduct rigorous clinical trials and demonstrate the efficacy of our technology. This is the first step in our long-term vision of making Aura a widely accessible tool for cognitive health and well-being.
                 </p>
             </section>
         </div>
     </main>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <!-- Particle Animation Script -->
+    <script src="js/particle-animation.js"></script>
 
 </body>
 </html>
