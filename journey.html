@@ -15,6 +15,84 @@
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles/main.css">
+
+    <style>
+        .aura-card {
+            position: relative;
+            background-color: rgba(26, 28, 35, 0.8);
+            border: 1px solid #2a2d35;
+            border-radius: 16px;
+            padding: 2.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .aura-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(0, 246, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .aura-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 15% 20%, rgba(0, 246, 255, 0.15), transparent 40%),
+                              radial-gradient(circle at 80% 70%, rgba(255, 0, 193, 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        .aura-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .icon-container {
+            flex-shrink: 0;
+            width: 5rem;
+            height: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+        }
+
+        .icon-container svg {
+            width: 3.5rem;
+            height: 3.5rem;
+            color: #00f6ff;
+            filter: drop-shadow(0 0 10px rgba(0, 246, 255, 0.7));
+        }
+        
+        .neon-divider {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, rgba(0, 246, 255, 0.5), transparent);
+        }
+
+        .learn-more-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #ff00c1;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 8px rgba(255, 0, 193, 0.5);
+        }
+        .learn-more-link:hover {
+            color: #fff;
+            text-shadow: 0 0 12px rgba(255, 0, 193, 1);
+            transform: translateX(4px);
+        }
+    </style>
 </head>
 <body class="antialiased">
 
@@ -42,17 +120,81 @@
     <main class="relative mt-32 container mx-auto px-6 py-12 content-container">
         <header class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter neon-glow-cyan-text">THE JOURNEY</h1>
-            <p class="mt-2 text-xl md:text-2xl text-gray-400">The Itinerary</p>
+            <p class="mt-2 text-xl md:text-2xl text-gray-400">Project Odyssey: A Global Blueprint</p>
         </header>
 
         <div class="space-y-10">
-            <!-- Card 1: The Journey -->
+
+            <!-- Card 1: Project Odyssey -->
             <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">6.0 The Journey</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    "Project Odyssey" is our 11-year global deployment mission. This page features an interactive map and timeline that allows you to follow our progress, learn about our upcoming destinations, and get involved in local initiatives. It is a transparent and engaging way to be a part of our journey as we bring Aura to the world.
-                </p>
+                <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <!-- Icon for "Global Mission / Odyssey" -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">Project Odyssey</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                           This is not a travel plan; it is an <strong>11-year operational blueprint</strong> to deploy a portfolio of world-building ventures by visiting ~256 countries and territories. It is a non-linear, strategic mission to seed a regenerative future, guided by real-time data and emergent opportunities.
+                        </p>
+                        <a href="https://auraofintelligence.github.io/Australian-world-travel/strategy.html" target="_blank" rel="noopener noreferrer" class="learn-more-link">See the 11-Year Strategy &rarr;</a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Card 2: The Catalyst Oracle -->
+            <section class="aura-card">
+                <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <!-- Icon for "AI / Strategy" -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">The Catalyst Oracle</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                           The intelligence engine that operationalizes our <strong>"Chaos Theory"</strong> model. The Oracle is a multi-layered scoring system that processes global data—from startup ecosystem vibrancy to visa friction—to generate a ranked list of "Next Best Action" destinations, ensuring every move is the most strategically valuable one possible.
+                        </p>
+                        <a href="https://auraofintelligence.github.io/Australian-world-travel/strategy.html#nav-oracle" target="_blank" rel="noopener noreferrer" class="learn-more-link">Explore the Oracle's Logic &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Card 3: Aura Affinity Map -->
+            <section class="aura-card">
+                 <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <!-- Icon for "Map / Network" -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">Aura Affinity Map</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                            How do we find our allies in every corner of the world? The Affinity Map is a living directory of businesses, organizations, and individuals with "Aura" in their name or resonant concepts. It's our tool for identifying warm leads for collaboration and obtaining invitations to visit every country on Earth.
+                        </p>
+                        <a href="https://auraofintelligence.github.io/aura-affinity/" target="_blank" rel="noopener noreferrer" class="learn-more-link">View the Live Map &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Card 4: Global Travel Oracle -->
+            <section class="aura-card">
+                 <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <!-- Icon for "Logistics / Visa" -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6M9 12h6m-6 5.25h6M5.25 6h.008v.008H5.25V6zm.75 0v.008h.008V6h-.008zm.75 0v.008h.008V6h-.008zm0 5.25v.008h.008v-.008h-.008zm0 5.25v.008h.008v-.008h-.008zM18 6h.008v.008H18V6zm.75 0v.008h.008V6h-.008zm.75 0v.008h.008V6h-.008zm0 5.25v.008h.008v-.008h-.008zm0 5.25v.008h.008v-.008h-.008z" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">Global Travel Oracle</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                           A custom-built, interactive travel advisory and logistics planner. This tool provides a real-time guide to business visa requirements, costs, and safety levels for every country, specifically tailored for an Australian citizen. It's the practical foundation that makes a mission of this scale possible.
+                        </p>
+                        <a href="https://auraofintelligence.github.io/Australian-world-travel/" target="_blank" rel="noopener noreferrer" class="learn-more-link">Access the Visa Guide &rarr;</a>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
