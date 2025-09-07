@@ -5,23 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Initiatives | The Great Unveiling</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Space Grotesk & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles/main.css">
+
+    <style>
+        /* ADDED FOR NEW CARD DESIGN */
+        .aura-card {
+            position: relative;
+            background-color: rgba(26, 28, 35, 0.8);
+            border: 1px solid #2a2d35;
+            border-radius: 16px;
+            padding: 2.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .aura-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(0, 246, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .aura-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 15% 20%, rgba(0, 246, 255, 0.15), transparent 40%),
+                              radial-gradient(circle at 80% 70%, rgba(255, 0, 193, 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        .aura-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .icon-container {
+            flex-shrink: 0;
+            width: 5rem;
+            height: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+        }
+
+        .icon-container svg {
+            width: 3.5rem;
+            height: 3.5rem;
+            color: #00f6ff;
+            filter: drop-shadow(0 0 10px rgba(0, 246, 255, 0.7));
+        }
+        
+        .neon-divider {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, rgba(0, 246, 255, 0.5), transparent);
+        }
+
+        .learn-more-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #ff00c1;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 8px rgba(255, 0, 193, 0.5);
+        }
+        .learn-more-link:hover {
+            color: #fff;
+            text-shadow: 0 0 12px rgba(255, 0, 193, 1);
+            transform: translateX(4px);
+        }
+        
+        /* See More Button Styling */
+        .see-more-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 2px solid #ff00c1;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 0, 193, 0.5), inset 0 0 10px rgba(255, 0, 193, 0.3);
+        }
+        .see-more-button:hover {
+            background-color: #ff00c1;
+            box-shadow: 0 0 25px rgba(255, 0, 193, 0.8), inset 0 0 15px rgba(255, 0, 193, 0.5);
+        }
+    </style>
 </head>
 <body class="antialiased">
 
-    <!-- Animated Background -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold tracking-wider text-white">
@@ -38,57 +129,107 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="relative mt-32 container mx-auto px-6 py-12 content-container">
         <header class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter neon-glow-cyan-text">THE INITIATIVES</h1>
-            <p class="mt-2 text-xl md:text-2xl text-gray-400">The Manifestation</p>
+            <p class="mt-2 text-xl md:text-2xl text-gray-400">From Blueprint to Reality</p>
         </header>
 
         <div class="space-y-10">
-            <!-- Card 1: GAJRA -->
+
             <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">4.1 GAJRA Earth, Arts and Music Festival Collaborations & Live Aid 2035</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    This initiative, governed by the DAO, will culminate in a global vote to select the location for a new Arts and Music Festival. This festival will be a celebration of our shared humanity and a platform for social change, with proceeds supporting regenerative projects worldwide. The initiative will also include a series of collaborations with existing festivals and a "Live Aid 2035" event to raise awareness and funds for our cause.
-                </p>
+                <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A11.953 11.953 0 0112 13.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253M12 21a9.004 9.004 0 008.716-6.747" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">GAJRA Earth & Live Aid 2035</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                           A global celebration of our shared humanity, powered by collective action. Governed by our DAO, the community will hold a global vote to launch a new Arts & Music Festival, culminating in a <strong>"Live Aid 2035"</strong> event to fund regenerative projects worldwide. This is a platform for joy, creativity, and direct democratic action.
+                        </p>
+                        <a href="#" class="learn-more-link">Join the Movement &rarr;</a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="aura-card">
+                <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">Minjerribah (The Home Base)</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                           Where the digital blueprint touches the earth. Minjerribah (North Stradbroke Island) is our living laboratory and home base. [cite_start]Here we prototype our regenerative protocols, from the <strong>"Civilisation of Sand"</strong> to a community-owned <strong>Sovereign Wealth Fund (SWF)</strong>[cite: 1], proving the potential of a truly regenerative society.
+                        </p>
+                        <a href="#" class="learn-more-link">Visit the Laboratory &rarr;</a>
+                    </div>
+                </div>
             </section>
 
-            <!-- Card 2: Minjerribah -->
             <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">4.2 Minjerribah (The Catalysts Home Base)</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    Minjerribah (North Stradbroke Island, Australia) will serve as our home base, a "Civilisation of Sand" where we can prototype our regenerative protocols. A Sovereign Wealth Fund, generated from the island's resources, will be used to fund local projects and support the community. This initiative will be a living laboratory for our vision, demonstrating the potential of a regenerative society.
-                </p>
+                 <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-3.75-2.25M21 18l-3.75-2.25" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">500 Queens Venture Capital</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                            An economic engine designed to rebalance the scales and empower a new generation of founders. [cite_start]This is a three-phase venture fund to support women-led ventures, starting with a proof-of-concept in Queensland and scaling to a global G20 initiative[cite: 1]. We provide capital, mentorship, and a powerful community to create a more equitable world.
+                        </p>
+                        <a href="#" class="learn-more-link">Empower the Future &rarr;</a>
+                    </div>
+                </div>
             </section>
 
-            <!-- Card 3: Queens Venture Capital -->
             <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">4.3 Queens Venture Capital</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    Queens Venture Capital is a 3-phase model for funding female founders. We believe that empowering women is essential for creating a more equitable and prosperous world. Our model provides not only financial support but also mentorship, resources, and a strong community of female leaders.
-                </p>
+                 <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9.75v6.75m0 0l-3-3m3 3l3-3m-8.25 6a4.5 4.5 0 01-1.42-8.775 4.5 4.5 0 018.34-3.996 4.5 4.5 0 011.42 8.775 4.5 4.5 0 01-8.34 3.996z" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">Aura for Dementia</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                            What if technology could help us preserve the essence of who we are? [cite_start]This specialized application of Aura is designed to assist individuals with memory loss and neurodiverse needs[cite: 1]. Our pragmatic clinical pathway aims to deliver a powerful tool for cognitive health, providing compassionate support for individuals and their caregivers.
+                        </p>
+                        <a href="#" class="learn-more-link">Discover the Clinical Path &rarr;</a>
+                    </div>
+                </div>
             </section>
 
-            <!-- Card 4: Clinical Pathways -->
-            <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">4.4 Clinical Pathways</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    This initiative showcases our pragmatic plan for achieving certification for Aura as a treatment for Dementia. We are working with leading researchers and medical institutions to conduct rigorous clinical trials and demonstrate the efficacy of our technology. This is the first step in our long-term vision of making Aura a widely accessible tool for cognitive health and well-being.
-                </p>
+             <section class="aura-card">
+                 <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m-3-1l-3-1m3 1v5.5m-3-5.5v5.5m-3-5.5l-3 1m3-1v5.5" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">Sandworm Subterranean Tech</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                            The future isn't just about building up; it's about building with resilience, from the ground down. [cite_start]This infrastructure venture pioneers the use of pioneering subterranean systems and tunneling for everything from transport to housing[cite: 1]. Our goal is to create disaster-resilient communities shielded from growing climate instability.
+                        </p>
+                        <a href="#" class="learn-more-link">Explore Resilient Cities &rarr;</a>
+                    </div>
+                </div>
             </section>
+            
         </div>
+        
+        <div class="text-center mt-16">
+            <a href="https://auraofintelligence.github.io/aura-ecosystem/index.html" target="_blank" rel="noopener noreferrer" class="see-more-button">
+                See More Initiatives
+            </a>
+        </div>
+
     </main>
 
-    <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 
-    <!-- Particle Animation Script -->
     <script src="js/particle-animation.js"></script>
 
 </body>
