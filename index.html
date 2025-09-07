@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Unveiling | Aura of Intelligence</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Space Grotesk & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Core Styling & Dark Theme --- */
+        body {
+            background-color: #0a0b0f;
+            color: #e0e1e6;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent scrollbars from 3D scene */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* --- 3D Canvas Container --- */
+        #constellation-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* --- Glassmorphism Navigation --- */
+        nav {
+            background: rgba(10, 11, 15, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(42, 45, 57, 0.5);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #00f6ff;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00f6ff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* --- Neon Glow Effects --- */
+        .neon-glow-cyan-text {
+            text-shadow:
+                0 0 5px rgba(0, 246, 255, 0.8),
+                0 0 10px rgba(0, 246, 255, 0.6),
+                0 0 20px rgba(0, 246, 255, 0.4);
+        }
+
+        .neon-glow-pink-button {
+            box-shadow:
+                0 0 5px rgba(255, 0, 193, 0.9),
+                0 0 15px rgba(255, 0, 193, 0.7),
+                0 0 30px rgba(255, 0, 193, 0.5);
+            transition: all 0.3s ease;
+        }
+        .neon-glow-pink-button:hover {
+            box-shadow:
+                0 0 10px rgba(255, 0, 193, 1),
+                0 0 25px rgba(255, 0, 193, 0.8),
+                0 0 50px rgba(255, 0, 193, 0.6);
+        }
+
+        /* --- Loading Spinner --- */
+        .loader {
+            border: 4px solid #8c8f9b;
+            border-top: 4px solid #00f6ff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-wider text-white">
+                <span class="neon-glow-cyan-text">AURA</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#vision" class="nav-link text-gray-300">The Vision</a>
+                <a href="#technology" class="nav-link text-gray-300">The Technology</a>
+                <a href="#initiatives" class="nav-link text-gray-300">The Initiatives</a>
+                <a href="#library" class="nav-link text-gray-300">Library</a>
+                <a href="#journey" class="nav-link text-gray-300">The Journey</a>
+                <a href="#join" class="nav-link text-gray-300">Join Us</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 3D Scene Canvas -->
+    <div id="constellation-canvas"></div>
+
+    <!-- Main Content -->
+    <main class="relative h-screen w-full flex flex-col justify-center items-center text-center px-4">
+        <div id="loading-indicator" class="flex flex-col items-center justify-center">
+            <div class="loader mb-4"></div>
+            <p class="text-gray-400">Awakening the Cosmos...</p>
+        </div>
+
+        <div id="main-content" class="hidden animate-fade-in">
+            <h1 class="text-4xl md:text-6xl lg:text-8xl font-bold text-white leading-tight tracking-tighter">
+                THE GREAT <span class="neon-glow-cyan-text">UNVEILING</span>
+            </h1>
+            <p class="mt-4 md:mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-300">
+                An interactive blueprint for a regenerative civilization, powered by a fusion of ancient wisdom and emergent technology.
+            </p>
+            <p class="mt-4 text-sm text-gray-500">
+                Click and drag to explore. Click a nebula to navigate.
+            </p>
+        </div>
+    </main>
+
+    <!-- Three.js and GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <!-- Main Application Logic -->
+    <script type="module">
+        // --- Scene Setup ---
+        let scene, camera, renderer, starField, nebulaGroup;
+        const canvas = document.getElementById('constellation-canvas');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const mainContent = document.getElementById('main-content');
+        
+        // --- Interactive Node Data ---
+        const nodes = [
+            { name: 'The Vision', position: new THREE.Vector3(-15, 5, -20), color: '#00f6ff', link: '#vision' },
+            { name: 'The Technology', position: new THREE.Vector3(15, 8, -25), color: '#ff00c1', link: '#technology' },
+            { name: 'The Initiatives', position: new THREE.Vector3(0, -10, -18), color: '#00f6ff', link: '#initiatives' },
+            { name: 'The Library', position: new THREE.Vector3(-20, -8, -30), color: '#8c8f9b', link: '#library' },
+            { name: 'The Journey', position: new THREE.Vector3(22, -5, -35), color: '#8c8f9b', link: '#journey' },
+            { name: 'Join Us', position: new THREE.Vector3(0, 15, -40), color: '#ff00c1', link: '#join' },
+        ];
+        let interactiveObjects = [];
+
+        // --- Mouse Interaction ---
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let INTERSECTED;
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+
+
+        function init() {
+            // Scene
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x0a0b0f, 0.015);
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.z = 5;
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            canvas.appendChild(renderer.domElement);
+
+            // --- Create Scene Objects ---
+            createStarField();
+            createNebulas();
+            
+            // --- Event Listeners ---
+            window.addEventListener('resize', onWindowResize, false);
+            document.addEventListener('mousemove', onMouseMove, false);
+            document.addEventListener('mousedown', onMouseDown, false);
+            document.addEventListener('mouseup', onMouseUp, false);
+            document.addEventListener('click', onClick, false);
+
+            // Hide loader and show content
+            loadingIndicator.style.display = 'none';
+            mainContent.classList.remove('hidden');
+            gsap.fromTo("#main-content", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1.5, ease: 'power3.out' });
+        }
+
+        function createStarField() {
+            const starGeometry = new THREE.BufferGeometry();
+            const starMaterial = new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 0.05,
+                transparent: true,
+                opacity: 0.7
+            });
+
+            const starVertices = [];
+            for (let i = 0; i < 10000; i++) {
+                const x = (Math.random() - 0.5) * 200;
+                const y = (Math.random() - 0.5) * 200;
+                const z = (Math.random() - 0.5) * 200;
+                starVertices.push(x, y, z);
+            }
+
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            starField = new THREE.Points(starGeometry, starMaterial);
+            scene.add(starField);
+        }
+
+        function createNebulas() {
+            nebulaGroup = new THREE.Group();
+            
+            nodes.forEach(node => {
+                // Create the glowing core
+                const geometry = new THREE.SphereGeometry(0.5, 32, 32);
+                const material = new THREE.MeshBasicMaterial({ color: node.color, transparent: true, opacity: 0.8 });
+                const nebulaCore = new THREE.Mesh(geometry, material);
+                nebulaCore.position.copy(node.position);
+                
+                // Create the halo effect using a sprite
+                const spriteMaterial = new THREE.SpriteMaterial({
+                    map: createGlowTexture(node.color),
+                    color: node.color,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false,
+                });
+                const halo = new THREE.Sprite(spriteMaterial);
+                halo.scale.set(6, 6, 1);
+                nebulaCore.add(halo);
+
+                // Create the text label
+                const label = createTextSprite(node.name);
+                label.position.set(0, 1.2, 0); // Position above the core
+                nebulaCore.add(label);
+
+                // Add data for interaction
+                nebulaCore.userData = { link: node.link, isInteractive: true, halo: halo };
+                
+                nebulaGroup.add(nebulaCore);
+                interactiveObjects.push(nebulaCore);
+            });
+            scene.add(nebulaGroup);
+        }
+
+        function createGlowTexture(color) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 128;
+            canvas.height = 128;
+            const context = canvas.getContext('2d');
+            const gradient = context.createRadialGradient(
+                canvas.width / 2, canvas.height / 2, 0,
+                canvas.width / 2, canvas.height / 2, canvas.width / 2
+            );
+            gradient.addColorStop(0.1, 'rgba(255, 255, 255, 1)');
+            gradient.addColorStop(0.4, color);
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function createTextSprite(message) {
+            const fontface = "Inter";
+            const fontsize = 24;
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            context.font = `Bold ${fontsize}px ${fontface}`;
+            
+            // Measure text width for canvas size
+            const metrics = context.measureText(message);
+            const textWidth = metrics.width;
+            canvas.width = textWidth + 20; // Add some padding
+            canvas.height = fontsize + 20;
+            
+            // Re-apply font after resizing canvas
+            context.font = `500 ${fontsize}px ${fontface}`;
+            context.fillStyle = "rgba(224, 225, 230, 0.9)"; // off-white
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillText(message, canvas.width / 2, canvas.height / 2);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+            const sprite = new THREE.Sprite(spriteMaterial);
+            sprite.scale.set(canvas.width / 20, canvas.height / 20, 1);
+            return sprite;
+        }
+
+        // --- Event Handlers & Animation Loop ---
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function onMouseDown(event) {
+            isDragging = true;
+            previousMousePosition.x = event.clientX;
+            previousMousePosition.y = event.clientY;
+        }
+
+        function onMouseUp() {
+            isDragging = false;
+        }
+
+        function onMouseMove(event) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+            
+            if (isDragging) {
+                const deltaX = event.clientX - previousMousePosition.x;
+                const deltaY = event.clientY - previousMousePosition.y;
+
+                nebulaGroup.rotation.y += deltaX * 0.002;
+                nebulaGroup.rotation.x += deltaY * 0.002;
+
+                previousMousePosition.x = event.clientX;
+                previousMousePosition.y = event.clientY;
+            }
+        }
+
+        function onClick() {
+             if (INTERSECTED) {
+                // In a real multi-page site, you'd navigate
+                // window.location.href = INTERSECTED.userData.link;
+                console.log(`Navigating to: ${INTERSECTED.userData.link}`);
+                // For this single page, we can just show an alert or log
+                alert(`This would navigate to the "${INTERSECTED.children[1].material.map.image.getContext('2d').measureText(INTERSECTED.children[1].material.map.image.textContent).text}" section.`);
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Subtle rotation
+            starField.rotation.y += 0.00005;
+            nebulaGroup.rotation.y += 0.0001;
+
+            // Raycasting for hover effects
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(interactiveObjects, true);
+
+            if (intersects.length > 0) {
+                let object = intersects[0].object;
+                // Traverse up to find the parent group with userData
+                while(object.parent && !object.userData.isInteractive) {
+                    object = object.parent;
+                }
+
+                if (INTERSECTED != object && object.userData.isInteractive) {
+                    if (INTERSECTED) {
+                        // Restore previous intersected object
+                        gsap.to(INTERSECTED.scale, { x: 1, y: 1, z: 1, duration: 0.3, ease: 'power2.out' });
+                        gsap.to(INTERSECTED.userData.halo.scale, { x: 6, y: 6, duration: 0.3, ease: 'power2.out' });
+                    }
+                    INTERSECTED = object;
+                    // Animate the new intersected object
+                    gsap.to(INTERSECTED.scale, { x: 1.2, y: 1.2, z: 1.2, duration: 0.3, ease: 'power2.out' });
+                    gsap.to(INTERSECTED.userData.halo.scale, { x: 8, y: 8, duration: 0.3, ease: 'power2.out' });
+                    document.body.style.cursor = 'pointer';
+                }
+            } else {
+                if (INTERSECTED) {
+                    // Restore when mouse leaves
+                    gsap.to(INTERSECTED.scale, { x: 1, y: 1, z: 1, duration: 0.3, ease: 'power2.out' });
+                    gsap.to(INTERSECTED.userData.halo.scale, { x: 6, y: 6, duration: 0.3, ease: 'power2.out' });
+                }
+                INTERSECTED = null;
+                document.body.style.cursor = 'default';
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        // --- Start the application ---
+        init();
+        animate();
+    </script>
+
+</body>
+</html>
