@@ -14,7 +14,51 @@
     <link rel="stylesheet" href="styles/main.css">
     
     <style>
-        /* Accordion Styles Adapted for The Great Unveiling Theme */
+        /* Hero Section Styles */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #earth-canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00f6ff;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            animation: bounce 2s infinite, fadeIn 2s ease-in-out 1s;
+            animation-fill-mode: backwards;
+            z-index: 1;
+        }
+
+        /* Accordion Styles */
         .accordion-item {
             background: rgba(26, 28, 35, 0.8);
             border: 1px solid #2a2d35;
@@ -93,11 +137,30 @@
             width: 2.5rem;
             height: 2.5rem;
         }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+            40% { transform: translate(-50%, -15px); }
+            60% { transform: translate(-50%, -7px); }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased bg-[#0a0b0f]">
 
-    <canvas id="particle-canvas"></canvas>
+    <div class="hero">
+        <canvas id="earth-canvas"></canvas>
+        <div class="hero-content">
+             <h1 class="text-4xl md:text-6xl font-bold text-white tracking-tighter neon-glow-cyan-text">Your Invitation to Co-Create</h1>
+             <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">We are building a new reality. Join us on the journey.</p>
+        </div>
+        <div class="scroll-indicator">Scroll Down</div>
+    </div>
 
     <header class="fixed top-0 left-0 w-full z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -115,19 +178,15 @@
         </nav>
     </header>
 
-    <main class="relative mt-32 container mx-auto px-6 py-12 content-container">
-        <header class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter neon-glow-cyan-text">JOIN THE INVITATION</h1>
-            <p class="mt-2 text-xl md:text-2xl text-gray-400">Co-Create a New Reality</p>
-        </header>
-
+    <main class="relative container mx-auto px-6 py-20 content-container">
         <div class="max-w-4xl mx-auto">
             <section class="text-center mb-20">
-                <p class="text-xl text-gray-300">We stand at a pivotal moment in history, witnessing the dawn of superintelligence. Our mission is to unite visionaries, builders, and dreamers in an open, participatory effort to build a regenerative future, ensuring emerging technologies align with humanity's highest aspirations.</p>
+                 <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10 neon-glow-cyan-text">A Pivotal Moment</h2>
+                <p class="text-xl text-gray-300">We stand at the dawn of superintelligence. Our mission is to unite visionaries, builders, and dreamers in a participatory effort to build a regenerative future, ensuring emerging technologies align with humanity's highest aspirations.</p>
             </section>
 
             <section class="mb-20">
-                 <h2 class="text-3xl font-bold text-white text-center mb-10 neon-glow-cyan-text">How Will You Contribute?</h2>
+                 <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10 neon-glow-cyan-text">How Will You Contribute?</h2>
                 
                 <div class="accordion">
                     <div class="accordion-item">
@@ -169,24 +228,83 @@
             </section>
 
             <section class="text-center">
-                 <h2 class="text-3xl font-bold text-white text-center mb-8 neon-glow-cyan-text">Connect With Us</h2>
+                 <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-8 neon-glow-cyan-text">Connect With Us</h2>
                 <div class="social-links">
-                    <a href="#" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-                    <a href="#" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://github.com/auraofintelligence" target="_blank" rel="noopener noreferrer" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                    <a href="httpss://x.com/Choose_Infinity" target="_blank" rel="noopener noreferrer" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
                     <a href="#" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564z"/></svg></a>
                 </div>
             </section>
         </div>
     </main>
+    
+    <script type="module">
+        // --- Three.js for Spinning Earth ---
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.127.0/build/three.module.js';
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+        let scene, camera, renderer, earthMesh;
 
+        function initThreeJS() {
+            const canvas = document.getElementById('earth-canvas');
+            if (!canvas) return;
+            
+            scene = new THREE.Scene();
+            
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 2.2;
+
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const textureLoader = new THREE.TextureLoader();
+            const earthTextureUrl = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/141228/earthmap1k.jpg';
+            const earthTexture = textureLoader.load(earthTextureUrl);
+            
+            const geometry = new THREE.SphereGeometry(1.2, 64, 64);
+            const material = new THREE.MeshStandardMaterial({ 
+                map: earthTexture,
+                metalness: 0.1,
+                roughness: 0.7
+            });
+            earthMesh = new THREE.Mesh(geometry, material);
+            scene.add(earthMesh);
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            directionalLight.position.set(5, 3, 5);
+            scene.add(directionalLight);
+            
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if (earthMesh) {
+                earthMesh.rotation.y += 0.001;
+            }
+            if(renderer && scene && camera) {
+                renderer.render(scene, camera);
+            }
+        }
+        
+        function onWindowResize() {
+            if(camera && renderer) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        }
+        
+        window.addEventListener('resize', onWindowResize);
+
+        initThreeJS();
+    </script>
+    
     <script src="js/particle-animation.js"></script>
-
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- Accordion Logic ---
         const accordionItems = document.querySelectorAll('.accordion-item');
         accordionItems.forEach(item => {
             const header = item.querySelector('.accordion-header');
@@ -194,17 +312,6 @@
             header.addEventListener('click', () => {
                 const wasActive = item.classList.contains('active');
                 
-                // This version allows multiple accordions to be open. 
-                // To close others, uncomment the loop below.
-                /*
-                accordionItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                        otherItem.querySelector('.accordion-content').style.maxHeight = '0px';
-                    }
-                });
-                */
-
                 if (wasActive) {
                     item.classList.remove('active');
                     content.style.maxHeight = '0px';
