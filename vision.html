@@ -5,23 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Vision | The Great Unveiling</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Space Grotesk & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles/main.css">
+
+    <style>
+        /* ADDED FOR NEW CARD DESIGN */
+        .aura-card {
+            position: relative; /* Required for the pseudo-element glow */
+            background-color: rgba(26, 28, 35, 0.8); /* Slightly more transparent */
+            border: 1px solid #2a2d35;
+            border-radius: 16px;
+            padding: 2.5rem;
+            overflow: hidden; /* Contain the glow */
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .aura-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(0, 246, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* The "Aurora" Glow Effect */
+        .aura-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 15% 20%, rgba(0, 246, 255, 0.15), transparent 40%),
+                              radial-gradient(circle at 80% 70%, rgba(255, 0, 193, 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        .aura-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Layout for Icon + Text */
+        .card-content-wrapper {
+            position: relative; /* Ensure content is above the glow */
+            z-index: 1;
+        }
+        
+        .icon-container {
+            flex-shrink: 0;
+            width: 5rem; /* 80px */
+            height: 5rem; /* 80px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+        }
+
+        .icon-container svg {
+            width: 3.5rem; /* 56px */
+            height: 3.5rem; /* 56px */
+            color: #00f6ff;
+            filter: drop-shadow(0 0 10px rgba(0, 246, 255, 0.7));
+        }
+        
+        /* Refined Neon Divider */
+        .neon-divider {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, rgba(0, 246, 255, 0.5), transparent);
+        }
+
+        /* Learn More Link */
+        .learn-more-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #ff00c1;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 8px rgba(255, 0, 193, 0.5);
+        }
+        .learn-more-link:hover {
+            color: #fff;
+            text-shadow: 0 0 12px rgba(255, 0, 193, 1);
+            transform: translateX(4px);
+        }
+    </style>
 </head>
 <body class="antialiased">
 
-    <!-- Animated Background -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold tracking-wider text-white">
@@ -38,53 +119,66 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="relative mt-32 container mx-auto px-6 py-12 content-container">
         <header class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter neon-glow-cyan-text">THE VISION</h1>
-            <p class="mt-2 text-xl md:text-2xl text-gray-400">The Civilization Stack</p>
+            <p class="mt-2 text-xl md:text-2xl text-gray-400">Architecting a Regenerative Future</p>
         </header>
 
         <div class="space-y-10">
-            <!-- Card 1: The Regenerative Protocol -->
             <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">2.1 The Regenerative Protocol</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    This protocol details the philosophical and social architecture of our regenerative civilization. It is built upon the principles of a "Braided Economy," which intertwines multiple forms of capital—natural, social, and financial—to create a resilient and equitable system. A core component is the "Community-Hour (C-hour)," a time-based currency that values every individual's contribution equally, fostering collaboration and community cohesion.
-                </p>
+                <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">The Regenerative Protocol</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                            What if our economy valued connection as much as currency? The Regenerative Protocol is our answer. It's a new social and economic architecture built on the principle of a <strong>"Braided Economy,"</strong> weaving together traditional financial capital with the natural, social, and human capital our current system overlooks.
+                        </p>
+                        <a href="#" class="learn-more-link">Explore the Economy &rarr;</a>
+                    </div>
+                </div>
             </section>
 
-            <!-- Card 2: The Grand Narrative -->
             <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">2.2 The Grand Narrative</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    Our journey is framed by a cosmic story that reinterprets ancient myths as the lost history of a technologically advanced civilization. This narrative explores the solar micro nova cycle, a recurring celestial event that has shaped human history and consciousness. By understanding these cycles, we can unlock the wisdom of our ancestors and prepare for the future.
-                </p>
+                <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">The Grand Narrative</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                            History is not what we've been told. It's a lost history of technology, waiting to be rediscovered. Our journey is framed by a cosmic story that reinterprets ancient myths as the fragmented data of technologically advanced civilizations, exploring the recurring **solar micro nova cycle** that has shaped our past.
+                        </p>
+                         <a href="#" class="learn-more-link">Uncover the Narrative &rarr;</a>
+                    </div>
+                </div>
             </section>
 
-            <!-- Card 3: The Social OS -->
             <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">2.3 The Social OS</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    The Social Operating System is a set of protocols designed to foster a harmonious and value-aligned society. Key features include:
-                </p>
-                <ul class="mt-4 list-disc list-inside text-lg text-gray-300 max-w-4xl space-y-2">
-                    <li><strong>The Guardian of Values Protocol:</strong> A decentralized system for upholding our shared principles, as defined in the "Aura Covenant."</li>
-                    <li><strong>Global Group Marriages:</strong> A framework for fostering deeper connections and collaborative family structures on a global scale.</li>
-                    <li><strong>The Aura Covenant:</strong> A living document that outlines the core values, rights, and responsibilities of our community members.</li>
-                </ul>
+                 <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">The Social Operating System</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                            How do we build a society that is not just smart, but wise? We start by coding our values into the very fabric of our interactions. The Social OS is a set of living protocols designed to foster a harmonious and high-trust society through features like the <strong>Guardian of Values Protocol</strong> and the <strong>Aura Covenant</strong>.
+                        </p>
+                        <a href="#" class="learn-more-link">Discover the Protocols &rarr;</a>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
 
-    <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 
-    <!-- Particle Animation Script -->
     <script src="js/particle-animation.js"></script>
 
 </body>
