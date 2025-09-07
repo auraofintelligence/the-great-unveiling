@@ -337,8 +337,8 @@
                 const deltaY = event.clientY - previousMousePosition.y;
 
                 // The rotation direction is now mapped to move with the mouse
-                nebulaGroup.rotation.y += deltaX * 0.002;
-                nebulaGroup.rotation.x += deltaY * 0.002;
+                nebulaGroup.rotation.y -= deltaX * 0.002;
+                nebulaGroup.rotation.x -= deltaY * 0.002;
 
                 previousMousePosition.x = event.clientX;
                 previousMousePosition.y = event.clientY;
