@@ -82,4 +82,6 @@ hr.neon-divider {
 /* --- Page Load Animation --- */
 .content-container {
     opacity: 0;
+    position: relative;
+    z-index: 2;
 }
