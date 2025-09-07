@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Journey | The Great Unveiling</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Space Grotesk & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles/main.css">
 
     <style>
@@ -96,10 +93,8 @@
 </head>
 <body class="antialiased">
 
-    <!-- Animated Background -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold tracking-wider text-white">
@@ -116,7 +111,6 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="relative mt-32 container mx-auto px-6 py-12 content-container">
         <header class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter neon-glow-cyan-text">THE JOURNEY</h1>
@@ -125,11 +119,9 @@
 
         <div class="space-y-10">
 
-            <!-- Card 1: Project Odyssey -->
             <section class="aura-card">
                 <div class="card-content-wrapper md:flex items-center">
                     <div class="icon-container">
-                        <!-- Icon for "Global Mission / Odyssey" -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
                     </div>
                     <div>
@@ -143,29 +135,9 @@
                 </div>
             </section>
             
-            <!-- Card 2: The Catalyst Oracle -->
-            <section class="aura-card">
-                <div class="card-content-wrapper md:flex items-center">
-                    <div class="icon-container">
-                        <!-- Icon for "AI / Strategy" -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197" /></svg>
-                    </div>
-                    <div>
-                        <h2 class="text-3xl font-bold text-white">The Catalyst Oracle</h2>
-                        <hr class="neon-divider my-4">
-                        <p class="text-lg text-gray-300 max-w-4xl">
-                           The intelligence engine that operationalizes our <strong>"Chaos Theory"</strong> model. The Oracle is a multi-layered scoring system that processes global data—from startup ecosystem vibrancy to visa friction—to generate a ranked list of "Next Best Action" destinations, ensuring every move is the most strategically valuable one possible.
-                        </p>
-                        <a href="https://auraofintelligence.github.io/Australian-world-travel/strategy.html#nav-oracle" target="_blank" rel="noopener noreferrer" class="learn-more-link">Explore the Oracle's Logic &rarr;</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Card 3: Aura Affinity Map -->
             <section class="aura-card">
                  <div class="card-content-wrapper md:flex items-center">
                     <div class="icon-container">
-                        <!-- Icon for "Map / Network" -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" /></svg>
                     </div>
                     <div>
@@ -179,11 +151,9 @@
                 </div>
             </section>
 
-            <!-- Card 4: Global Travel Oracle -->
             <section class="aura-card">
                  <div class="card-content-wrapper md:flex items-center">
                     <div class="icon-container">
-                        <!-- Icon for "Logistics / Visa" -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6M9 12h6m-6 5.25h6M5.25 6h.008v.008H5.25V6zm.75 0v.008h.008V6h-.008zm.75 0v.008h.008V6h-.008zm0 5.25v.008h.008v-.008h-.008zm0 5.25v.008h.008v-.008h-.008zM18 6h.008v.008H18V6zm.75 0v.008h.008V6h-.008zm.75 0v.008h.008V6h-.008zm0 5.25v.008h.008v-.008h-.008zm0 5.25v.008h.008v-.008h-.008z" /></svg>
                     </div>
                     <div>
@@ -196,14 +166,29 @@
                     </div>
                 </div>
             </section>
+
+            <section class="aura-card">
+                <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">Space Weather & Earth Observation Hub</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                            The intelligence engine that powers our journey and safeguards our future. [cite_start]This integrated hub ingests and analyzes real-time data—from solar activity and seismological readings to atmospheric changes—to provide the predictive insights that guide Project Odyssey and serve as an advanced educational tool for disaster prediction. [cite: 1612, 1615, 1619, 1623, 1472, 1473, 1513]
+                        </p>
+                        <a href="#" class="learn-more-link">Explore the Data Hub &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
         </div>
     </main>
 
-    <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 
-    <!-- Particle Animation Script -->
     <script src="js/particle-animation.js"></script>
 
 </body>
