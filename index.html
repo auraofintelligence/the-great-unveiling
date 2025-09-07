@@ -109,11 +109,11 @@
     <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-wider text-white">
+            <a href="index.html" class="text-2xl font-bold tracking-wider text-white">
                 <span class="neon-glow-cyan-text">AURA</span>
             </a>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#vision" class="nav-link text-gray-300">The Vision</a>
+                <a href="vision.html" class="nav-link text-gray-300">The Vision</a>
                 <a href="#technology" class="nav-link text-gray-300">The Technology</a>
                 <a href="#initiatives" class="nav-link text-gray-300">The Initiatives</a>
                 <a href="#library" class="nav-link text-gray-300">Library</a>
@@ -160,7 +160,7 @@
         
         // --- Interactive Node Data ---
         const nodes = [
-            { name: 'The Vision', position: new THREE.Vector3(-15, 5, -20), color: '#00f6ff', link: '#vision' },
+            { name: 'The Vision', position: new THREE.Vector3(-15, 5, -20), color: '#00f6ff', link: 'vision.html' },
             { name: 'The Technology', position: new THREE.Vector3(15, 8, -25), color: '#ff00c1', link: '#technology' },
             { name: 'The Initiatives', position: new THREE.Vector3(0, -10, -18), color: '#00f6ff', link: '#initiatives' },
             { name: 'The Library', position: new THREE.Vector3(-20, -8, -30), color: '#8c8f9b', link: '#library' },
@@ -347,11 +347,7 @@
 
         function onClick() {
              if (INTERSECTED) {
-                // In a real multi-page site, you'd navigate
-                // window.location.href = INTERSECTED.userData.link;
-                console.log(`Navigating to: ${INTERSECTED.userData.link}`);
-                // For this single page, we can just show an alert or log
-                alert(`This would navigate to the "${INTERSECTED.children[1].material.map.image.getContext('2d').measureText(INTERSECTED.children[1].material.map.image.textContent).text}" section.`);
+                window.location.href = INTERSECTED.userData.link;
             }
         }
 
