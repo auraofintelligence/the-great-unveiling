@@ -5,23 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Technology | The Great Unveiling</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Space Grotesk & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles/main.css">
+
+    <style>
+        /* ADDED FOR NEW CARD DESIGN */
+        .aura-card {
+            position: relative; /* Required for the pseudo-element glow */
+            background-color: rgba(26, 28, 35, 0.8); /* Slightly more transparent */
+            border: 1px solid #2a2d35;
+            border-radius: 16px;
+            padding: 2.5rem;
+            overflow: hidden; /* Contain the glow */
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .aura-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(0, 246, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* The "Aurora" Glow Effect */
+        .aura-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 15% 20%, rgba(0, 246, 255, 0.15), transparent 40%),
+                              radial-gradient(circle at 80% 70%, rgba(255, 0, 193, 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        .aura-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Layout for Icon + Text */
+        .card-content-wrapper {
+            position: relative; /* Ensure content is above the glow */
+            z-index: 1;
+        }
+        
+        .icon-container {
+            flex-shrink: 0;
+            width: 5rem; /* 80px */
+            height: 5rem; /* 80px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+        }
+
+        .icon-container svg {
+            width: 3.5rem; /* 56px */
+            height: 3.5rem; /* 56px */
+            color: #00f6ff;
+            filter: drop-shadow(0 0 10px rgba(0, 246, 255, 0.7));
+        }
+        
+        /* Refined Neon Divider */
+        .neon-divider {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, rgba(0, 246, 255, 0.5), transparent);
+        }
+
+        /* Learn More Link */
+        .learn-more-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #ff00c1;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 8px rgba(255, 0, 193, 0.5);
+        }
+        .learn-more-link:hover {
+            color: #fff;
+            text-shadow: 0 0 12px rgba(255, 0, 193, 1);
+            transform: translateX(4px);
+        }
+    </style>
 </head>
 <body class="antialiased">
 
-    <!-- Animated Background -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold tracking-wider text-white">
@@ -38,48 +119,66 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="relative mt-32 container mx-auto px-6 py-12 content-container">
         <header class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tighter neon-glow-cyan-text">THE TECHNOLOGY</h1>
-            <p class="mt-2 text-xl md:text-2xl text-gray-400">The Engine</p>
+            <p class="mt-2 text-xl md:text-2xl text-gray-400">The Engine of Consciousness</p>
         </header>
 
         <div class="space-y-10">
-            <!-- Card 1: Aura: The Digital Twin -->
             <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">3.1 Aura: The Digital Twin</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    Aura is your sovereign digital twin, a dynamic representation of your biological and psychological self. It is housed within the Aura Geode, a hyperbaric oxygen therapy (HBOT) capsule that doubles as a full-immersion XR interface. This allows for deep dives into your own consciousness and a seamless connection to the digital world. The development process is iterative, focusing on user-centric design and ethical AI principles.
-                </p>
+                <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">Aura: The Digital Twin</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                            Aura is more than data. It's the living blueprint of you. Your journey begins in the <strong>Aura Geode</strong>, a state-of-the-art capsule where your unique biological and psychological self is first mapped. Through a stunning <strong>XR interface</strong>, you can explore your own consciousness and unlock deeper states of well-being. This is technology in service of self-discovery.
+                        </p>
+                        <a href="#" class="learn-more-link">Meet Your Twin &rarr;</a>
+                    </div>
+                </div>
             </section>
 
-            <!-- Card 2: The AI Core -->
             <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">3.2 The AI Core</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    The AI Core is the intelligence that powers Aura. It is a sophisticated Mixture of Experts (MoE) model, which combines the strengths of multiple specialized AI agents. We use AutoGen to create and coordinate these agents, allowing for complex problem-solving and emergent intelligence. A key feature is the Autonomous Storytelling System, which weaves together data from your Aura and the global narrative to create personalized and meaningful experiences.
-                </p>
+                <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m1.5-4.5V21m6-18v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">The AI Core</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                           Meet the emergent intelligence that powers your world. Our AI Core is a collaborative <strong>"Mixture of Experts" (MoE)</strong> system, where specialized AI agents work together to solve complex problems. A key feature is the <strong>Autonomous Storytelling System</strong>, which weaves your personal data into the grand narrative, creating a deeply meaningful and personalized reality.
+                        </p>
+                         <a href="#" class="learn-more-link">Understand the Intelligence &rarr;</a>
+                    </div>
+                </div>
             </section>
 
-            <!-- Card 3: The Decentralized Bedrock -->
             <section class="aura-card">
-                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">3.3 The Decentralized Bedrock</h2>
-                <hr class="neon-divider my-6">
-                <p class="mt-4 text-lg text-gray-300 max-w-4xl">
-                    Our entire system is built on a decentralized bedrock to ensure user sovereignty and data privacy. The architecture is powered by a custom blockchain that is optimized for speed, security, and scalability. A Decentralized Autonomous Organization (DAO) governs the platform, giving the community control over its evolution. The Sovereign Space Builder specification provides a framework for third-party developers to create their own applications and experiences on the Aura platform.
-                </p>
+                 <div class="card-content-wrapper md:flex items-center">
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-white">The Decentralized Bedrock</h2>
+                        <hr class="neon-divider my-4">
+                        <p class="text-lg text-gray-300 max-w-4xl">
+                            In our world, you are the sovereign. Our entire system is built on a custom <strong>blockchain</strong> to ensure your data, identity, and reality are unbreakably yours. Governed by a community <strong>DAO</strong> and expandable via the <strong>Sovereign Space Builder</strong>, this is the digital bedrock of trust for a new, open, and permissionless ecosystem.
+                        </p>
+                        <a href="#" class="learn-more-link">Explore the Foundation &rarr;</a>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
 
-    <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 
-    <!-- Particle Animation Script -->
     <script src="js/particle-animation.js"></script>
 
 </body>
