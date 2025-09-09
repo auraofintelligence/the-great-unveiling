@@ -85,3 +85,30 @@ hr.neon-divider {
     position: relative;
     z-index: 2;
 }
+
+/* --- PDF Library Styling --- */
+#pdf-library .aura-card {
+    background-color: rgba(26, 28, 35, 0.5);
+    border: 1px solid rgba(42, 45, 53, 0.7);
+    transition: all 0.3s ease;
+}
+
+#pdf-library .aura-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    background-color: rgba(26, 28, 35, 0.8);
+    box-shadow: 0 0 20px rgba(0, 246, 255, 0.25);
+    border-color: rgba(0, 246, 255, 0.5);
+}
+
+#pdf-library .aura-card h3 {
+    color: #00f6ff;
+    transition: color 0.3s ease;
+}
+
+#pdf-library .aura-card:hover h3 {
+    text-shadow: 0 0 8px rgba(0, 246, 255, 0.7);
+}
+
+#pdf-library .aura-card p {
+    color: #9ca3af; /* text-gray-400 */
+}

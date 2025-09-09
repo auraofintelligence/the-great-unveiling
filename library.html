@@ -54,6 +54,15 @@
                     The Library is a dedicated, searchable resource hub providing access to all source documents, research papers, technical specifications, and community-generated content. It is the transparent and open-source foundation of our entire project, ensuring that everyone has the opportunity to learn, contribute, and build upon our collective knowledge.
                 </p>
             </section>
+
+            <!-- Card 2: PDF Library -->
+            <section class="aura-card">
+                <h2 class="text-3xl font-bold text-white neon-glow-cyan-text">PDF Library</h2>
+                <hr class="neon-divider my-6">
+                <div id="pdf-library" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- PDF items will be injected here -->
+                </div>
+            </section>
         </div>
     </main>
 
@@ -63,6 +72,64 @@
 
     <!-- Particle Animation Script -->
     <script src="js/particle-animation.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const pdfLibrary = document.getElementById('pdf-library');
+            const pdfFiles = [
+                "00 Super Alignment of Artificial Super Intelligence.pdf",
+                "01 Mastermind Swarmwise.pdf",
+                "01 Regenerative Civilization Protocol.pdf",
+                "02 GAJRA Earth ICO DAO Plan with GPT-4.pdf",
+                "02 The Weaver Protocol.pdf",
+                "03 Innovation Engine.pdf",
+                "04 Aura of Intelligence BIZ Ecosystem.pdf",
+                "10 Companies All At Once.pdf",
+                "11 Build an Aura in Blender then in Unity XR .pdf",
+                "12 Mixture of Experts, Function Callers and AutoGen Agents.pdf",
+                "13 MoE Extended.pdf",
+                "500 Queens VC NEW Long.pdf",
+                "82 Claytons Road Amity, Minjerribah.pdf",
+                "AI Kitchen Food Waste Solution.pdf",
+                "AURA Consciousness Parlor & GAJRA Earth Encampment – Blueprint for a Global Consciousness Festival N.pdf",
+                "Art Prompting for Rapid Storyboarding.pdf",
+                "Aura Retreat & Teacher Training.pdf",
+                "Autonomous Mirror Universe Storytelling System_.pdf",
+                "Big Picture Thinking.pdf",
+                "Clinical Research Path for Aura of Dementia.pdf",
+                "Cosmic Nexus UAP, AI, AA, R&D.pdf",
+                "Edfu Egypt to Aura AGI Alignment .pdf",
+                "Film Director A-i Assistant.pdf",
+                "GGM Philosophising.pdf",
+                "Global Chaos Theory Itinerary.pdf",
+                "Global Peace Through AI Travel.pdf",
+                "Integrated Food System AI Expansion.pdf",
+                "Minjerribah Multipurpose Beach Sports Club.pdf",
+                "Project Aura Geode_ The Alchemical Genesis of a Regenerative Civilization.pdf",
+                "Shifting Sands of a Timeless Land.pdf",
+                "Snapshot Executive Summary.pdf",
+                "Sovereign Space Builder_ Full System Specification.pdf",
+                "Space Weather Data IFTTT.pdf",
+                "Space Weather Hub Pseudo Code.pdf",
+                "Straddie Sovereign Wealth Fund & “Civilisation of Sand” – Research Brief (-4m).pdf",
+                "System Integration and Implementation Plan.pdf",
+                "The Braided Economy Mandate_  Integrating Regenerative Principles into U.S. Digital Asset Legislation.pdf",
+                "The Great Unveiling.pdf",
+                "Transition to a Multi-Polar Global Economy (1).pdf",
+                "Version7 Aura of Intelligence 2023 July.pdf"
+            ];
+
+            pdfFiles.forEach(file => {
+                const card = `
+                    <a href="docs/${file}" target="_blank" class="aura-card block p-6 bg-gray-800/20 border border-gray-700/50 rounded-lg hover:bg-gray-700/40 transition-colors duration-300">
+                        <h3 class="text-lg font-semibold text-cyan-300/80 group-hover:text-cyan-200">${file.replace('.pdf', '')}</h3>
+                        <p class="text-sm text-gray-400 mt-2">PDF Document</p>
+                    </a>
+                `;
+                pdfLibrary.innerHTML += card;
+            });
+        });
+    </script>
 
 </body>
 </html>
