@@ -86,29 +86,63 @@ hr.neon-divider {
     z-index: 2;
 }
 
-/* --- PDF Library Styling --- */
-#pdf-library .aura-card {
+/* --- Sorting Controls --- */
+.sort-button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #9ca3af; /* text-gray-400 */
+    border: 1px solid #374151; /* border-gray-700 */
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+}
+
+.sort-button:hover {
+    background-color: #374151; /* bg-gray-700 */
+    color: #e5e7eb; /* text-gray-200 */
+}
+
+.sort-button.active {
+    color: #00f6ff;
+    border-color: #00f6ff;
+    box-shadow: 0 0 10px rgba(0, 246, 255, 0.3);
+}
+
+.sort-direction-button {
+    padding: 6px;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #9ca3af; /* text-gray-400 */
+    border: 1px solid #374151; /* border-gray-700 */
+    transition: all 0.3s ease;
+}
+
+.sort-direction-button:hover {
+    background-color: #374151; /* bg-gray-700 */
+    color: #e5e7eb; /* text-gray-200 */
+}
+
+.sort-direction-button svg {
+    transition: transform 0.3s ease;
+}
+
+.sort-direction-button.asc svg {
+    transform: rotate(180deg);
+}
+
+/* --- PDF Card Styling --- */
+.pdf-card {
+    display: block;
+    padding: 1.5rem;
+    border-radius: 8px;
     background-color: rgba(26, 28, 35, 0.5);
     border: 1px solid rgba(42, 45, 53, 0.7);
     transition: all 0.3s ease;
 }
 
-#pdf-library .aura-card:hover {
-    transform: translateY(-5px) scale(1.03);
-    background-color: rgba(26, 28, 35, 0.8);
-    box-shadow: 0 0 20px rgba(0, 246, 255, 0.25);
-    border-color: rgba(0, 246, 255, 0.5);
-}
-
-#pdf-library .aura-card h3 {
-    color: #00f6ff;
-    transition: color 0.3s ease;
-}
-
-#pdf-library .aura-card:hover h3 {
-    text-shadow: 0 0 8px rgba(0, 246, 255, 0.7);
-}
-
-#pdf-library .aura-card p {
-    color: #9ca3af; /* text-gray-400 */
+.pdf-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(30, 32, 40, 0.8);
+    box-shadow: 0 0 20px rgba(0, 246, 255, 0.15);
+    border-color: rgba(0, 246, 255, 0.3);
 }
